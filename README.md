@@ -76,7 +76,7 @@ Développer un script en Python/Scapy capable de reveler le SSID correspondant �
 
 __Question__ : expliquer en quelques mots la solution que vous avez trouvée pour ce problème ?
 
-La solution au problème des réseaux cachés, nous avons analysé les paquets provenant de certaines AP et nous avons remarqué qu'il n'y avait pas d'élément pour l'ESSID ou pas de couche tout court alors qu'une AP est detectée.
+Afin de résoudre le problème des réseaux cachés, nous avons analysé les paquets provenant de certaines AP et nous avons remarqué qu'il n'y avait pas d'élément pour l'ESSID ou pas de couche tout court alors qu'une AP est detectée.
 De ce fait, nous avons pu extrapoler qu'une AP se trouvait bien derrièrer ce paquet mais qu'aucune information ne pourrait en être retirée. 
 Le code est relativement simple et est commenté de manière à comprendre correctement ce qui a été fait.
 

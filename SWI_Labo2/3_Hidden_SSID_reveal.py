@@ -36,10 +36,10 @@ def findSSID(pkt):
         # Nous verifions que l'adresse MAC d'une AP n'a pas deja ete detecte
         if pkt.getlayer(Dot11).addr2 not in F_bssids:
             F_bssids.append(pkt.getlayer(Dot11).addr2)
-            ssid = pkt.getlayer(Dot11Elt).info
+            ssid = pkt.getlayer(Dot11Elt).info.decode()
             # Une des possibilites pour avoir un reseau cache est que l'ESSID soit vide ou la couche est vide
             if ssid == '' or pkt.getlayer(Dot11Elt).ID != 0:
-                print("Hidden Network Detected")
+                print("Hidden Network Detected : " + pkt.addr3)
             print("Network Detected: %s" % ssid)
 
 
