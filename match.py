@@ -22,9 +22,8 @@ def matching_addr(sta, ap):
         AP_with_STA.setdefault(sta, []).append(ap)
 
 def pkt_callback_bis(pkt):
-    if pkt.haslayer(Dot11Elt) and pkt.type == 2: #Data frames
+    if pkt.haslayer(Dot11Elt) and pkt.getlayer(Dot11).type == 2: #Data frames
         print("Dataframe recieved")
-        pkt.show()
         DS = pkt.FCfield & 0x3
         toDS = DS & 0x01 != 0
         fromDS = DS & 0x2 != 0
