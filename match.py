@@ -22,11 +22,8 @@ def matching_addr(sta, ap):
         AP_with_STA.setdefault(sta, []).append(ap)
 
 def pkt_callback_bis(pkt):
-    print("got it")
-    #print("frame recieved, with type = " + pkt.type)
-    if pkt.haslayer(Dot11Elt) and pkt.type == 2: #Data frames
-        #print("Dataframe recieved, with type = " + str(pkt.subtype))
-        pkt.show()
+    if pkt.haslayer(Dot11Elt) and pkt.getlayer(Dot11).type == 2: #Data frames
+        print("Dataframe recieved")
         DS = pkt.FCfield & 0x3
         toDS = DS & 0x01 != 0
         fromDS = DS & 0x2 != 0
@@ -63,7 +60,7 @@ if __name__ == "__main__":
     for it in range (1,14):
         cmd = "iwconfig wlan0mon channel " + str(it)
         os.system(cmd)
-        sniff(iface="wlan0mon", prn=pkt_callback_bis, timeout=50)
+        sniff(iface="wlan0mon", prn=pkt_callback_bis, timeout=10)
 
     for MAC in AP_with_STA:
         print(MAC + " connected to ", AP_with_STA[MAC])
