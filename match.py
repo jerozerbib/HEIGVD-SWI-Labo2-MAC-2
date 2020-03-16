@@ -58,9 +58,9 @@ if __name__ == "__main__":
 
 
     for it in range (1,14):
-        cmd = "iwconfig wlan0mon channel " + str(it)
+        cmd = "iwconfig " + iface+ " channel " + str(it)
         os.system(cmd)
-        sniff(iface="wlan0mon", prn=pkt_callback_bis, timeout=10)
+        sniff(iface=iface, prn=pkt_callback_bis, timeout=10)
 
     for MAC in AP_with_STA:
         print(MAC + " connected to ", AP_with_STA[MAC])

@@ -3,7 +3,7 @@
 import argparse
 
 from scapy.all import *
-from scapy.layers.dot11 import Dot11Beacon, Dot11, Dot11Elt
+from scapy.layers.dot11 import Dot11Beacon, Dot11, Dot11Elt, Dot11ProbeResp
 
 parser = argparse.ArgumentParser()
 
@@ -34,13 +34,10 @@ def findSSID(pkt):
     # Si c'est le cas, on peut garantir que le paquet vient d'une AP
     if pkt.haslayer(Dot11Beacon):
         # Nous verifions que l'adresse MAC d'une AP n'a pas deja ete detecte
-        if pkt.getlayer(Dot11).addr2 not in F_bssids:
-            F_bssids.append(pkt.getlayer(Dot11).addr2)
-            ssid = pkt.getlayer(Dot11Elt).info.decode()
-            # Une des possibilites pour avoir un reseau cache est que l'ESSID soit vide ou la couche est vide
-            if ssid == '' or pkt.getlayer(Dot11Elt).ID != 0:
+        if pkt.getlayer(Dot11).addr3 not in F_bssids:
+            F_bssids.append(pkt.getlayer(Dot11).addr3)
+    elif pkt.haslayer(Dot11ProbeResp) and pkt.addr3 in F_bssids:
                 print("Hidden Network Detected : " + pkt.info.decode())
-            print("Network Detected: %s" % ssid)
 
 
 if __name__ == "__main__":
