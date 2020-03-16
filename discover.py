@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# Commentaire : Le script se basant sur la réception de data frames, nous n'avons pas pu en tester le comportement.
+# En effet, comme signalé au professeur, nous ne captons aucune data frame lors de nos captures wireshark.
+# Nous n'avons pas trouvé d'alternatives pour contourner ce problème et le professeur non plus.
 from scapy.all import *
 import argparse
 import os
