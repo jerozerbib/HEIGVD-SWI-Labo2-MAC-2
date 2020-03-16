@@ -39,7 +39,7 @@ def findSSID(pkt):
             ssid = pkt.getlayer(Dot11Elt).info.decode()
             # Une des possibilites pour avoir un reseau cache est que l'ESSID soit vide ou la couche est vide
             if ssid == '' or pkt.getlayer(Dot11Elt).ID != 0:
-                print("Hidden Network Detected : " + pkt.addr3)
+                print("Hidden Network Detected : " + pkt.info.decde())
             print("Network Detected: %s" % ssid)
 
 
